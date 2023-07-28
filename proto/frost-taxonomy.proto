@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package taxonomy;
+
+option go_package = "app.taxonomy";
+
+service Taxonomy {
+  rpc put(TaxonomyItem) returns (TaxonomyPutResponse) {}
+  rpc get(TaxonomyGetRequest) returns (TaxonomyItem) {}
+}
+
+message TaxonomyGetRequest {
+  string id  = 10;
+}
+
+message TaxonomyPutResponse {
+  bool success = 10;
+  string message = 20;
+}
+
+message TaxonomyItem {
+  string id  = 10;
+  string state = 20;
+  string grade = 30;
+  string name = 40;
+  string sourceDocument = 50;
+  string parent = 60;
+  repeated string itemsForward = 70;
+  repeated string itemsBack = 80;
+  string description = 90;
+}
